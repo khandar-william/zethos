@@ -1,5 +1,13 @@
 d()
-b.innerHTML += "<style>body{width:600px;margin:0 auto;font-family:Courier}#o{font-size:40px;border:2px solid;width:25rem;display:inline-block}#i{overflow:auto;padding:20px;width:600px;height:350px;border:1px solid}v{color:red}</style><br><br><button onclick=p()>Play</button><br><br><c id=o>.</c><br><br><p contenteditable id=i>Welcome to <a contenteditable=false href=//zethos.Zolmeister.com>Zethos!</a> <br><br>This is a speed reading tool inspired by Spritz ($3.5mil). <br>It's free and open source on <a contenteditable=false href=//github.com/Zolmeister/Zethos>GitHub.</a><br>-<a contenteditable=false href=//Zolmeister.com>Zolmeister";
+b.innerHTML += 
+  "<style>body{width:600px;margin:0 auto;font-family:Courier}#o{font-size:40px;border:2px solid;width:25rem;display:inline-block}#i{overflow:auto;padding:20px;width:600px;height:350px;border:1px solid}v{color:red}</style>" +
+  "<br><br>"+
+  "<button onclick=p()>Play</button> "+
+  "<button onclick=pausecont()>Pause/Continue</button> "+
+  "<br><br>"+
+  "<c id=o>.</c>"+
+  "<br><br>"+
+  "<p contenteditable id=i>Welcome to <a contenteditable=false href=//zethos.Zolmeister.com>Zethos!</a> <br><br>This is a speed reading tool inspired by Spritz ($3.5mil). <br>It's free and open source on <a contenteditable=false href=//github.com/Zolmeister/Zethos>GitHub.</a><br>-<a contenteditable=false href=//Zolmeister.com>Zolmeister";
 
 var playing,index,loop,parse,focus,hyphenate,str,words;
 parse = function(words, str) {
@@ -66,6 +74,11 @@ loop = function(words,str) {
   w = parse(i.textContent)[index++] || p()
   o.innerHTML = Array(8 - w[1]).join('&nbsp;')+w[0].slice(0,w[1])+'<v>'+w[0][w[1]]+'</v>'+w[0].slice(w[1]+1)
   playing && setTimeout(loop, w[2])
+}
+
+pausecont = function() {
+  playing = !playing
+  playing && loop()
 }
 
 p()
